@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/DetailBateriePage.dart';
 import 'package:flutter_application/ligneBatterie.dart';
 
 import 'ParametresPage.dart';
@@ -32,6 +33,10 @@ class MyApp extends StatelessWidget {
       title: title,
       theme: ThemeData(primarySwatch: white), // thème de l'application en blanc
       home: MyHomePage(title: title),
+      routes: {
+        '/detailBaterie': (context) => const DetailBateriePage(),
+        // '/secondPage': (context) => MySecondPage(title: "Deuxième page"),
+      },
     );
   }
 }
@@ -71,12 +76,17 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Padding(
         padding: const EdgeInsets.all(10),
         child: ListView(children: [
-          const LigneBatterie(
-              nom: '12V',
-              amperage: 150,
-              identifiant: 'LT-0945',
-              signal: 80,
-              isSwitched: true),
+          GestureDetector(
+            onTap: () => {
+              Navigator.pushNamed(context, '/detailBaterie'),
+            },
+            child: const LigneBatterie(
+                nom: '12V',
+                amperage: 150,
+                identifiant: 'LT-0945',
+                signal: 80,
+                isSwitched: true),
+          ),
           const LigneBatterie(
               nom: '12V',
               amperage: 150,
