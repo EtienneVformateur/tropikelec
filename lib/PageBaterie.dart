@@ -5,7 +5,7 @@ import 'PageDonnees.dart';
 import 'components/ChangePageBat.dart';
 
 class NavPageBaterie extends StatefulWidget {
-  NavPageBaterie({super.key});
+  const NavPageBaterie({super.key});
 
   @override
   State<NavPageBaterie> createState() => _NavPageBaterieState();
@@ -19,16 +19,16 @@ class _NavPageBaterieState extends State<NavPageBaterie> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(title: const Text('Menu'), backgroundColor: Colors.grey),
-        body: new Stack(
+        body: Stack(
           children: <Widget>[
-            ChangePageBat(AlertScreen(), 0, index),
-            ChangePageBat(DetailBateriePage(), 1, index),
+            ChangePageBat(const AlertScreen(), 0, index),
+            ChangePageBat(const DetailBateriePage(), 1, index),
             ChangePageBat(NavDonnees(), 2, index),
           ],
         ), //drawer: Widget();
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
-            color: Color.fromARGB(255, 180, 180, 180),
+            color: const Color.fromARGB(255, 180, 180, 180),
             borderRadius: BorderRadius.circular(25.0),
           ),
           child: BottomNavigationBar(
