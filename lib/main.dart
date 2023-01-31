@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/DetailBateriePage.dart';
 import 'package:flutter_application/ligneBatterie.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 import 'ParametresPage.dart';
 import 'SauvegardePage.dart';
 import 'TelechargementPage.dart';
+import 'InfoBatterie.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,6 +14,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   final title = 'Liste des équipements';
+
   MaterialColor white = const MaterialColor(
     0xFFFFFFFF,
     <int, Color>{
@@ -34,8 +37,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primarySwatch: white), // thème de l'application en blanc
       home: MyHomePage(title: title),
       routes: {
+        "/infoBatteries": (context) => InfoBatterieScreen(),
         '/detailBaterie': (context) => const DetailBateriePage(),
-        // '/secondPage': (context) => MySecondPage(title: "Deuxième page"),
       },
     );
   }
@@ -76,15 +79,30 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Padding(
         padding: const EdgeInsets.all(10),
         child: ListView(children: [
+
+          const LigneBatterie(
+              nom: '12V',
+              amperage: 150,
+              identifiant: 'LT-0945',
+              signal: 80,
+              isSwitched: true),
+          GestureDetector(
+            onTap: () => {Navigator.pushNamed(context, '/infoBatteries')},
+
           GestureDetector(
             onTap: () => {
               Navigator.pushNamed(context, '/detailBaterie'),
             },
+
             child: const LigneBatterie(
                 nom: '12V',
                 amperage: 150,
                 identifiant: 'LT-0945',
                 signal: 80,
+
+                isSwitched: false),
+          )
+
                 isSwitched: true),
           ),
           const LigneBatterie(
@@ -93,6 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
               identifiant: 'LT-0945',
               signal: 80,
               isSwitched: false)
+
         ]),
       )),
     );
