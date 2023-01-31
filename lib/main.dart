@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/ligneBatterie.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 import 'ParametresPage.dart';
 import 'SauvegardePage.dart';
 import 'TelechargementPage.dart';
+import 'InfoBatterie.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,6 +13,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   final title = 'Liste des équipements';
+
   MaterialColor white = const MaterialColor(
     0xFFFFFFFF,
     <int, Color>{
@@ -32,6 +35,9 @@ class MyApp extends StatelessWidget {
       title: title,
       theme: ThemeData(primarySwatch: white), // thème de l'application en blanc
       home: MyHomePage(title: title),
+      routes: {
+        "/infoBatteries": (context) => InfoBatterieScreen(),
+      },
     );
   }
 }
@@ -77,12 +83,15 @@ class _MyHomePageState extends State<MyHomePage> {
               identifiant: 'LT-0945',
               signal: 80,
               isSwitched: true),
-          const LigneBatterie(
-              nom: '12V',
-              amperage: 150,
-              identifiant: 'LT-0945',
-              signal: 80,
-              isSwitched: false)
+          GestureDetector(
+            onTap: () => {Navigator.pushNamed(context, '/infoBatteries')},
+            child: const LigneBatterie(
+                nom: '12V',
+                amperage: 150,
+                identifiant: 'LT-0945',
+                signal: 80,
+                isSwitched: false),
+          )
         ]),
       )),
     );
