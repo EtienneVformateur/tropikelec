@@ -3,6 +3,7 @@ import 'package:flutter_application/AlertScreen.dart';
 import 'package:flutter_application/DetailBateriePage.dart';
 import 'PageDonnees.dart';
 import 'components/ChangePageBat.dart';
+import 'components/MonDrawer.dart';
 
 class NavPageBaterie extends StatefulWidget {
   const NavPageBaterie({super.key});
@@ -18,7 +19,14 @@ class _NavPageBaterieState extends State<NavPageBaterie> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(title: const Text('Menu'), backgroundColor: Colors.grey),
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(
+            "Detail Baterie",
+            textAlign: TextAlign.center,
+          ),
+        ),
+        drawer: MonDrawer(context),
         body: Stack(
           children: <Widget>[
             ChangePageBat(const AlertScreen(), 0, index),
