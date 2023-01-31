@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/DetailBateriePage.dart';
 import 'package:flutter_application/ligneBatterie.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(title: title),
       routes: {
         "/infoBatteries": (context) => InfoBatterieScreen(),
+        '/detailBaterie': (context) => const DetailBateriePage(),
       },
     );
   }
@@ -77,6 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Padding(
         padding: const EdgeInsets.all(10),
         child: ListView(children: [
+
           const LigneBatterie(
               nom: '12V',
               amperage: 150,
@@ -85,13 +88,30 @@ class _MyHomePageState extends State<MyHomePage> {
               isSwitched: true),
           GestureDetector(
             onTap: () => {Navigator.pushNamed(context, '/infoBatteries')},
+
+          GestureDetector(
+            onTap: () => {
+              Navigator.pushNamed(context, '/detailBaterie'),
+            },
+
             child: const LigneBatterie(
                 nom: '12V',
                 amperage: 150,
                 identifiant: 'LT-0945',
                 signal: 80,
+
                 isSwitched: false),
           )
+
+                isSwitched: true),
+          ),
+          const LigneBatterie(
+              nom: '12V',
+              amperage: 150,
+              identifiant: 'LT-0945',
+              signal: 80,
+              isSwitched: false)
+
         ]),
       )),
     );
