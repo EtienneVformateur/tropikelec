@@ -1,4 +1,11 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+
+import 'package:flutter/services.dart';
+
+import 'HomePage.dart';
+import 'components/MonDrawer.dart';
+
 import 'package:flutter_application/DetailBateriePage.dart';
 import 'package:flutter_application/ligneBatterie.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -8,9 +15,25 @@ import 'SauvegardePage.dart';
 import 'TelechargementPage.dart';
 import 'InfoBatterie.dart';
 
+
 void main() {
-  runApp(MyApp());
+  Paint.enableDithering = true;
+  SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+  runApp(const HomePageWidget());
 }
+
+
+class HomePageWidget extends StatelessWidget {
+  const HomePageWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: Home2Widget(),
+      ),
 
 class MyApp extends StatelessWidget {
   final title = 'Liste des équipements';
@@ -40,40 +63,60 @@ class MyApp extends StatelessWidget {
         "/infoBatteries": (context) => InfoBatterieScreen(),
         '/detailBaterie': (context) => const DetailBateriePage(),
       },
+
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
+class Home2Widget extends StatefulWidget {
+  const Home2Widget({super.key});
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<Home2Widget> createState() => _Home2WidgetState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  bool _isScanning = false;
+class _Home2WidgetState extends State<Home2Widget> {
+  void initState() {
+    super.initState();
+    Timer(
+      const Duration(seconds: 3),
+      () => Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MyApp(),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          widget.title,
-          textAlign: TextAlign.center,
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment(0.65, 1.15),
+          colors: [
+            Color.fromARGB(255, 124, 124, 124),
+            Color.fromARGB(255, 240, 184, 0),
+          ],
+          stops: [0.75, 1],
+          tileMode: TileMode.clamp,
         ),
-        actions: [
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-            child: IconButton(
-              onPressed: () {},
-              icon: Icon(_isScanning ? Icons.stop : Icons.refresh),
-            ),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            "images/logo.png",
+            width: 300,
           ),
         ],
       ),
+
+
       drawer: drawer(context),
       body: Center(
           child: Padding(
@@ -114,93 +157,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
         ]),
       )),
+
     );
   }
-}
-
-// mon drawer
-
-Widget drawer(BuildContext context) {
-  return Drawer(
-    child: ListView(
-      // Important: Remove any padding from the ListView.
-      padding: EdgeInsets.zero,
-      children: [
-        const DrawerHeader(
-          margin: EdgeInsets.zero,
-          decoration: BoxDecoration(
-            color: Color.fromARGB(255, 255, 255, 255),
-          ),
-          child: ListTile(
-            leading: const Icon(
-              Icons.menu,
-            ),
-            title: Text('Menu',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                )),
-          ),
-        ),
-        ListTile(
-          leading: const Icon(
-            Icons.menu,
-          ),
-          title: const Text('Liste des appareils'),
-          onTap: () {
-            // Navigator.pop(context);
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => MyApp()));
-          },
-        ),
-        ListTile(
-          leading: const Icon(
-            Icons.play_circle_filled,
-          ),
-          title: const Text('Démo'),
-          onTap: () {
-            Navigator.pop(context);
-          },
-        ),
-        ListTile(
-          leading: const Icon(
-            Icons.save_alt,
-          ),
-          title: const Text('Sauvegarde de fichiers'),
-          onTap: () {
-            // Navigator.pop(context);
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const SauvegardePage()));
-          },
-        ),
-        ListTile(
-          leading: const Icon(
-            Icons.file_download,
-          ),
-          title: const Text('Téléchargements'),
-          onTap: () {
-            // Navigator.pop(context);
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const TelechargementPage()));
-          },
-        ),
-        ListTile(
-          leading: const Icon(
-            Icons.question_mark,
-          ),
-          title: const Text('Paramètres'),
-          onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const ParametresPage()));
-          },
-        ),
-      ],
-    ),
-  );
 }

@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, avoid_unnecessary_containers, unused_import
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application/ParametresPage.dart';
+import 'package:flutter_application/HomePage.dart';
+import 'components/MonDrawer.dart';
 import 'components/TemperaturCycle.dart';
 import 'components/BtnChauffage.dart';
 import 'components/ChargeProtection.dart';
@@ -46,79 +47,58 @@ class _DetailBateriePageState extends State<DetailBateriePage> {
       ChartData('Jack', 532, Colors.blue),
       ChartData('Others', 366, Colors.green)
     ];
-    return MaterialApp(
-      theme: ThemeData(primarySwatch: white),
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(
-            title,
-            textAlign: TextAlign.center,
-          ),
-          actions: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-              child: IconButton(
-                onPressed: () {},
-                icon: Icon(_isScanning ? Icons.stop : Icons.refresh),
-              ),
-            ),
-          ],
-        ),
-        drawer: drawer(context),
-        body: Column(
-          children: [
-            // Rond
-            CircularGraph(chartData: chartData),
-            // TEXT AVANT DIVIDER
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Capacité restante",
-                  style: const TextStyle(
-                      fontSize: 20,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  "70.4/100.0Ah > 847,113Wh/2400Wh",
-                  style: const TextStyle(
-                      fontSize: 20,
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            // DIVIDER
-            Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
-                  child: Divider(
+    return Scaffold(
+      body: ListView(
+        children: [
+          // Rond
+          CircularGraph(chartData: chartData),
+          // TEXT AVANT DIVIDER
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Capacité restante",
+                style: const TextStyle(
+                    fontSize: 20,
                     color: Colors.grey,
-                    height: 5,
-                    thickness: 2,
-                  ),
-                )
-              ],
-            ),
-            // CARD
-            // TENSION / COURANT
-            TensionCourant(),
-            // TEMPERATURE / CYCLE
-            TemperatureCycle(),
-            // BTN SWITCH DECHARGE
-            DechargeBtn(),
-            // PUISSANCE
-            Puissance(),
-            //CHARGE PROTECTION
-            ChargeProtection(),
-            //MODE CHAUFFAGE
-            BtnChauffage(),
-          ],
-        ),
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "70.4/100.0Ah > 847,113Wh/2400Wh",
+                style: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          // DIVIDER
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
+                child: Divider(
+                  color: Colors.grey,
+                  height: 5,
+                  thickness: 2,
+                ),
+              )
+            ],
+          ),
+          // CARD
+          // TENSION / COURANT
+          TensionCourant(),
+          // TEMPERATURE / CYCLE
+          TemperatureCycle(),
+          // BTN SWITCH DECHARGE
+          DechargeBtn(),
+          // PUISSANCE
+          Puissance(),
+          //CHARGE PROTECTION
+          ChargeProtection(),
+          //MODE CHAUFFAGE
+          BtnChauffage(),
+        ],
       ),
     );
   }
