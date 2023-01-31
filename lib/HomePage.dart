@@ -3,6 +3,7 @@ import 'package:flutter_application/DetailBateriePage.dart';
 import 'package:flutter_application/PageBaterie.dart';
 import 'package:flutter_application/ligneBatterie.dart';
 
+import 'InfoBatterie.dart';
 import 'ParametresPage.dart';
 import 'SauvegardePage.dart';
 import 'TelechargementPage.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(title: title),
       routes: {
         '/pageBaterie': (context) => const NavPageBaterie(),
+        "/infoBatteries": (context) => InfoBatterieScreen(),
         // '/secondPage': (context) => MySecondPage(title: "Deuxième page"),
       },
     );
@@ -85,12 +87,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 signal: 80,
                 isSwitched: true),
           ),
-          const LigneBatterie(
-              nom: '12V',
-              amperage: 150,
-              identifiant: 'LT-0945',
-              signal: 80,
-              isSwitched: false)
+          GestureDetector(
+            onTap: () => {Navigator.pushNamed(context, '/infoBatteries')},
+            child: const LigneBatterie(
+                nom: '12V',
+                amperage: 150,
+                identifiant: 'LT-0945',
+                signal: 80,
+                isSwitched: false),
+          )
         ]),
       )),
     );

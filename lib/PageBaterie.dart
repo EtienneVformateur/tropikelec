@@ -47,7 +47,7 @@ class _NavPageBaterieState extends State<NavPageBaterie> {
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.settings),
-                  label: 'Panneau de configuration',
+                  label: 'Configuration',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.bar_chart),

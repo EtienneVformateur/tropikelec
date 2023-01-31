@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/components/MonDrawer.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import 'ParametresPage.dart';
@@ -89,7 +90,7 @@ class InfoBatterie extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-        drawer: drawer(context),
+        drawer: MonDrawer(context),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [

@@ -1,20 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-
 import 'package:flutter/services.dart';
-
 import 'HomePage.dart';
-import 'components/MonDrawer.dart';
-
-import 'package:flutter_application/DetailBateriePage.dart';
-import 'package:flutter_application/ligneBatterie.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
-
-import 'ParametresPage.dart';
-import 'SauvegardePage.dart';
-import 'TelechargementPage.dart';
-import 'InfoBatterie.dart';
-
 
 void main() {
   Paint.enableDithering = true;
@@ -22,7 +9,6 @@ void main() {
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   runApp(const HomePageWidget());
 }
-
 
 class HomePageWidget extends StatelessWidget {
   const HomePageWidget({Key? key}) : super(key: key);
@@ -34,36 +20,6 @@ class HomePageWidget extends StatelessWidget {
       home: Scaffold(
         body: Home2Widget(),
       ),
-
-class MyApp extends StatelessWidget {
-  final title = 'Liste des équipements';
-
-  MaterialColor white = const MaterialColor(
-    0xFFFFFFFF,
-    <int, Color>{
-      50: Color(0xFFFFFFFF),
-      100: Color(0xFFFFFFFF),
-      200: Color(0xFFFFFFFF),
-      300: Color(0xFFFFFFFF),
-      400: Color(0xFFFFFFFF),
-      500: Color(0xFFFFFFFF),
-      600: Color(0xFFFFFFFF),
-      700: Color(0xFFFFFFFF),
-      800: Color(0xFFFFFFFF),
-      900: Color(0xFFFFFFFF),
-    },
-  );
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: title,
-      theme: ThemeData(primarySwatch: white), // thème de l'application en blanc
-      home: MyHomePage(title: title),
-      routes: {
-        "/infoBatteries": (context) => InfoBatterieScreen(),
-        '/detailBaterie': (context) => const DetailBateriePage(),
-      },
-
     );
   }
 }
@@ -115,49 +71,6 @@ class _Home2WidgetState extends State<Home2Widget> {
           ),
         ],
       ),
-
-
-      drawer: drawer(context),
-      body: Center(
-          child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: ListView(children: [
-
-          const LigneBatterie(
-              nom: '12V',
-              amperage: 150,
-              identifiant: 'LT-0945',
-              signal: 80,
-              isSwitched: true),
-          GestureDetector(
-            onTap: () => {Navigator.pushNamed(context, '/infoBatteries')},
-
-          GestureDetector(
-            onTap: () => {
-              Navigator.pushNamed(context, '/detailBaterie'),
-            },
-
-            child: const LigneBatterie(
-                nom: '12V',
-                amperage: 150,
-                identifiant: 'LT-0945',
-                signal: 80,
-
-                isSwitched: false),
-          )
-
-                isSwitched: true),
-          ),
-          const LigneBatterie(
-              nom: '12V',
-              amperage: 150,
-              identifiant: 'LT-0945',
-              signal: 80,
-              isSwitched: false)
-
-        ]),
-      )),
-
     );
   }
 }
