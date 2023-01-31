@@ -67,7 +67,7 @@ class _DetailBateriePageState extends State<DetailBateriePage> {
           ],
         ),
         drawer: drawer(context),
-        body: Column(
+        body: ListView(
           children: [
             // Rond
             CircularGraph(chartData: chartData),
